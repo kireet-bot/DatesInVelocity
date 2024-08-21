@@ -1,0 +1,19 @@
+#set($dateTool = $tool.date)
+#set($currentDate = $dateTool.now)
+
+  ## Time Zone Conversion
+#set($currentDateInGMT = $dateTool.format('yyyy-MM-dd HH:mm:ss', $currentDate, 'GMT'))
+#set($currentDateInIST = $dateTool.format('yyyy-MM-dd HH:mm:ss', $currentDate, 'Asia/Kolkata'))
+
+  ##  Date Format Change
+#set($formattedDate = $dateTool.format('dd MMM yyyy', $currentDate))
+
+  ## Add Days to Current Date
+#set($dateAfter7Days = $dateTool.add($currentDate, 7))
+
+  ## Output the results
+$dateTool.format('yyyy-MM-dd HH:mm:ss', $currentDate)
+<p>Current Date in GMT: $currentDateInGMT</p>
+<p>Current Date in IST: $currentDateInIST</p>
+$formattedDate
+<p>Date After 7 Days: $dateTool.format('yyyy-MM-dd', $dateAfter7Days)</p>
