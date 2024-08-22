@@ -1,0 +1,35 @@
+#set($dateTool = $tool.dateTool)
+
+#* Current date and time *#
+#set($now = $dateTool.addDays(0))
+Current Date: $dateTool.formatDate($now, "yyyy-MM-dd HH:mm:ss")
+
+#* Adding 5 days to the current date *#
+#set($futureDate = $dateTool.addDays(5))
+Date after 5 days: $dateTool.formatDate($futureDate, "yyyy-MM-dd HH:mm:ss")
+
+#* Convert to a different time zone *#
+#set($timeZoneDate = $dateTool.convertTimeZone($now, "America/New_York", "yyyy-MM-dd HH:mm:ss"))
+Current Date in New York: $timeZoneDate
+
+#* Start of the current day *#
+#set($startOfDay = $dateTool.getStartOfDay($now))
+Start of Today: $dateTool.formatDate($startOfDay, "yyyy-MM-dd HH:mm:ss")
+
+#* End of the current day *#
+#set($endOfDay = $dateTool.getEndOfDay($now))
+End of Today: $dateTool.formatDate($endOfDay, "yyyy-MM-dd HH:mm:ss")
+
+#* Calculate the difference in days between two dates *#
+#set($date1 = $dateTool.parseDate("2024-08-22", "yyyy-MM-dd"))
+#set($date2 = $dateTool.parseDate("2024-09-01", "yyyy-MM-dd"))
+Difference in days between $dateTool.formatDate($date1, "yyyy-MM-dd") and $dateTool.formatDate($date2, "yyyy-MM-dd"): $dateTool.getDaysDifference($date1, $date2) days
+
+#* Check if one date is before another *#
+#set($isBefore = $dateTool.isBefore($date1, $date2))
+Is $dateTool.formatDate($date1, "yyyy-MM-dd") before $dateTool.formatDate($date2, "yyyy-MM-dd")? $isBefore
+
+#* Check if one date is after another *#
+#set($isAfter = $dateTool.isAfter($date2, $date1))
+Is $dateTool.formatDate($date2, "yyyy-MM-dd") after $dateTool.formatDate($date1, "yyyy-MM-dd")? $isAfter
+
